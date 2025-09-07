@@ -1122,7 +1122,7 @@ module.exports = {
     handleStatus: async (sock, status) => {
         await handleStatusUpdate(sock, status);
     }
-}
+  });
 
   // Message handler
   sock.ev.on('messages.upsert', async ({ messages }) => {
@@ -1147,3 +1147,4 @@ module.exports = {
       await sock.sendMessage(msg.key.remoteJid, { text: '*Goodbye 👋 from ○•.闩尺ㄩN Bot 🤖*' });
     }
   });
+}
