@@ -1122,4 +1122,28 @@ module.exports = {
     handleStatus: async (sock, status) => {
         await handleStatusUpdate(sock, status);
     }
-};
+}
+
+  // Message handler
+  sock.ev.on('messages.upsert', async ({ messages }) => {
+    const msg = messages[0];
+    if (!msg.message || msg.key.fromMe) return;
+
+    const text = msg.message.conversation || msg.message.extendedTextMessage?.text;
+
+    if (text && text.toLowerCase() === 'hi') {
+      await sock.sendMessage(msg.key.remoteJid, { text: '*Hello!😊 from ○•.闩尺ㄩN Bot 🤖*' });
+    }
+    
+    if (text && text.toLowerCase() === 'hello') {
+      await sock.sendMessage(msg.key.remoteJid, { text: '*Hello!😊 from ○•.闩尺ㄩN Bot 🤖*' });
+    }
+    
+    if (text && text.toLowerCase() === 'Gm') {
+      await sock.sendMessage(msg.key.remoteJid, { text: '*Good Morning!☀️ from ○•.闩尺ㄩN Bot 🤖*' });
+    }
+
+    if (text && text.toLowerCase() === 'bye') {
+      await sock.sendMessage(msg.key.remoteJid, { text: '*Goodbye 👋 from ○•.闩尺ㄩN Bot 🤖*' });
+    }
+  });
